@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import google from '../../assets/google.png';
 
-const Login = () => {
+const Register = () => {
 
     const [showPass, setShowPass] = useState(false);
     const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ const Login = () => {
         setShowPass(!showPass)
     }
 
-    const handleLogin = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         console.log(email, password);
     }
@@ -22,10 +22,10 @@ const Login = () => {
         <div className="hero">
   <div className="hero-content flex-col">
     <div className="text-center">
-      <h1 className="text-5xl font-bold text-slate-900 bg-cyan-300 p-8 rounded-full">Login</h1>
+      <h1 className="text-5xl font-bold text-slate-900 bg-cyan-300 p-8 rounded-full">Register</h1>
     </div>
     <div className="card flex-shrink-0 w-96  shadow-2xl bg-cyan-100">
-      <form onSubmit={handleLogin} className="card-body">
+      <form onSubmit={handleRegister} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="text-xl font-semibold">Email</span>
@@ -59,4 +59,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

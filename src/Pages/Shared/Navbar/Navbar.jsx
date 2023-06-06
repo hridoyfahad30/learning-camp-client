@@ -57,7 +57,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to='/' className="flex items-center">
-            <img className="w-24" src={logo} alt="" />
+            <img className="w-20" src={logo} alt="" />
         <p className="text-xl font-bold">LEARNING CAMP</p>
         </Link>
       </div>
@@ -73,11 +73,11 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <Link className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-500 hover:bg-cyan-400 rounded-lg duration-300">
+          <Link className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
             Logout
           </Link>
         </div>
-        <Link to='/login' className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-500 hover:bg-cyan-400 rounded-lg duration-300">
+        <Link to='/login' className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
           Login
         </Link>
       </div>
