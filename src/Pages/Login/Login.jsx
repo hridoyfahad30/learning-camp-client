@@ -22,9 +22,9 @@ const Login = () => {
         <div className="hero">
   <div className="hero-content flex-col">
     <div className="text-center">
-      <h1 className="text-5xl font-bold text-slate-900 bg-cyan-300 p-8 rounded-full">Login</h1>
+      <h1 className="text-3xl font-bold text-slate-900 bg-cyan-300 p-4 rounded-full -mb-3">Login</h1>
     </div>
-    <div className="card flex-shrink-0 w-96  shadow-2xl bg-cyan-100">
+    <div className="card flex-shrink-0 w-[500px]  shadow-2xl bg-cyan-100">
       <form onSubmit={handleLogin} className="card-body">
         <div className="form-control">
           <label className="label">
