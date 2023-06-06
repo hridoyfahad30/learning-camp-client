@@ -15,8 +15,7 @@ const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault();
         console.log(email, password);
-    }
-    
+    }    
 
     return (
         <div className="hero">
