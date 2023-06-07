@@ -31,7 +31,7 @@ const Navbar = () => {
         </button>
       </ActiveLink>
       {user && (
-        <ActiveLink to="/dashboard">
+        <ActiveLink to="/dashboard"> 
           <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-300 hover:text-black rounded-lg duration-300">
             Dashboard
           </button>

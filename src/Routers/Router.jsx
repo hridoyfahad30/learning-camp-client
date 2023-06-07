@@ -38,12 +38,11 @@ export const router = createBrowserRouter([
       ]
     },
     {
-      path: '/dashboard',
+      path: 'dashboard',
       element: <DashBoard />,
-      errorElement: <Error404 />,
       children: [
         {
-          path: '/dashboard',
+          path: 'my-selected-class',
           element: <MySelectedClass />
         }
       ]
