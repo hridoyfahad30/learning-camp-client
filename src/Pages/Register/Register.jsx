@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import { useForm } from "react-hook-form";
@@ -18,8 +18,12 @@ const Register = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const password = useRef({});
+  password.current = watch('password');
 
   const onSubmit = data => {
     console.log(data);
@@ -97,7 +101,7 @@ const Register = () => {
 
 
   return (
-    <div className="hero mt-14">
+    <div className="hero my-14">
       <div className="hero-content flex-col">
         <div className="avatar placeholder absolute z-10 top-20">
           <div className="bg-cyan-300 text-slate-900 text-3xl font-bold rounded-full w-32">
@@ -154,6 +158,7 @@ const Register = () => {
               </label>
               <input
                 type={showPass ? "password" : "text"}
+                name="password"
                 {...register("password", {
                   required: true,
                   minLength: 6,

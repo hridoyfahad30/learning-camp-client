@@ -99,7 +99,7 @@ const Login = () => {
   }
 
   return (
-    <div className="hero mt-20">
+    <div className="hero my-20">
       <div className="hero-content flex-col">
         <div className="avatar placeholder absolute z-10 top-24">
           <div className="bg-cyan-300 text-slate-900 text-3xl font-bold rounded-full w-32">
