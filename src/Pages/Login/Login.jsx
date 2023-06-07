@@ -120,6 +120,9 @@ const Login = () => {
                   and one special character.
                 </p>
               )}
+              {
+                err && <p className="text-red-600">{err}</p>
+              }
               <label className="label space-x-2">
                 <input onClick={handleShowPass} type="checkbox" name="" id="" />
                 <p className="">Show password</p>
