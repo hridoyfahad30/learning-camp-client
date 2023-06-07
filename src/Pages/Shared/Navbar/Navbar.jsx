@@ -41,7 +41,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar sticky top-0 backdrop-blur-md z-50 bg-cyan-800 bg-opacity-50 text-white ">
+    <div className="navbar sticky top-0 backdrop-blur-md z-50 bg-cyan-950 bg-opacity-70 text-white ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -91,12 +91,20 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <button
-              onClick={handleLogout}
-              className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: -2 }}
+              whileTap={{
+                scale: 1.2,
+                rotate: 10,
+              }}
             >
-              Logout
-            </button>
+              <button
+                onClick={handleLogout}
+                className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+              >
+                Logout
+              </button>
+            </motion.div>
           </div>
         )}
 
