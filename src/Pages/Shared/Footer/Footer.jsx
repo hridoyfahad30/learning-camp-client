@@ -9,7 +9,7 @@ import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-t from-cyan-200 to-teal-200 p-12">
+    <div className="bg-gradient-to-t from-cyan-200 to-teal-200 p-10">
       <footer className="footer">
         <div>
         <Link to='/' className="flex items-center">
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer my-14">
+      <footer className="footer mt-8">
         <div>
           <span className="footer-title">Address</span>
           <a>66 Caledonian Road, London. N1 9DP</a>
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div>
+      <div className="mt-4">
         <span className="footer-title">SECURE PAYMENT</span>
         <div className="flex gap-4 my-2">
           <a>

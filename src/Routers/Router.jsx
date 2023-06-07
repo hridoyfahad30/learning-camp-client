@@ -5,9 +5,9 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Error404 from "../Pages/Error404/Error404";
 import Instructors from "../Pages/Instructors/Instructors";
-import AllClasses from "../components/Pages/AllClasses/AllClasses";
 import DashBoard from "../Layout/DashBoard";
 import MySelectedClass from "../components/Dashboard/MySelectedClass/MySelectedClass";
+import AllClasses from "../Pages/AllClasses/AllClasses";
 
 export const router = createBrowserRouter([
     {

@@ -5,7 +5,7 @@ const SliderCard = ({ sliderImage }) => {
   return (
     <div className="flex items-center justify-center">
       <img
-        className="w-full md:h-[100vh] brightness-[0.3]"
+        className="w-full md:h-[75vh] brightness-[0.3]"
         src={sliderImage}
         alt=""
       />
