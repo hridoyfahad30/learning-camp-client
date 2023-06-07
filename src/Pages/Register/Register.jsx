@@ -101,9 +101,9 @@ const Register = () => {
 
 
   return (
-    <div className="hero my-14">
+    <div className="hero my-20">
       <div className="hero-content flex-col">
-        <div className="avatar placeholder absolute z-10 top-20">
+        <div className="avatar placeholder absolute z-10 top-28">
           <div className="bg-cyan-300 text-slate-900 text-3xl font-bold rounded-full w-32">
             <span className="text-3xl">Register</span>
           </div>
