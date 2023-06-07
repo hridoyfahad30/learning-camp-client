@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import ActiveLink from "./ActiveLink/ActiveLink";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/logo.png'
+import { AuthContext } from "../../../Providers/AuthProvider";
+import defaultUser from '../../../assets/user.png'
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+  }
+
+
   const navItem = (
     <div className="flex flex-col md:flex-row md:space-x-6">
       <ActiveLink to="/">
@@ -65,21 +75,25 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItem}</ul>
       </div>
       <div className="navbar-end">
-        <div className="flex items-center space-x-5">
-          <div className="tooltip tooltip-bottom" data-tip="User Name Here">
+        {
+          user &&
+          <div className="flex items-center space-x-5">
+          <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
             <div className="avatar">
               <div className="w-14 border-2 border-cyan-300 rounded-full">
-                <img src={logo} />
+                <img className="p-1" src={user?.photoURL || defaultUser} />
               </div>
             </div>
           </div>
-          <Link className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
+          <button onClick={handleLogout} className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
             Logout
-          </Link>
-        </div>
-        <Link to='/login' className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
+          </button>
+        </div>}
+        {!user &&
+
+          <Link to='/login' className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300">
           Login
-        </Link>
+        </Link>}
       </div>
     </div>
   );

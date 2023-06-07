@@ -64,6 +64,32 @@ const Login = () => {
       });
   };
 
+  const handleGoogleSignIn = () => {
+    googleSignUp()
+    .then((res) => {
+      const user = res.user;
+      const loggedInUser = {
+        email: user.email
+      }
+      fetch('https://toy-server-tau.vercel.app/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedInUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('toy-access-token', data.token)
+        })
+      setSuccess("Signed In");
+      navigate(from);
+    })
+        .catch(err=>{
+            setErr(err.message)
+        })
+  }
+
   return (
     <div className="hero mt-20">
       <div className="hero-content flex-col">
