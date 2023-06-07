@@ -17,25 +17,27 @@ const Navbar = () => {
   const navItem = (
     <div className="flex flex-col md:flex-row md:space-x-6">
       <ActiveLink to="/">
-        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-400 rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-300 rounded-lg duration-300">
           Home
         </button>
       </ActiveLink>
       <ActiveLink to="/instructors">
-        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-400 rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-300 rounded-lg duration-300">
           Instructors
         </button>
       </ActiveLink>
       <ActiveLink to="/classes">
-        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-400 rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-300 rounded-lg duration-300">
           Classes
         </button>
       </ActiveLink>
-      <ActiveLink to="/dashboard">
-        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-400 rounded-lg duration-300">
+      {
+        user &&
+        <ActiveLink to="/dashboard">
+        <button className="px-2 py-2 text-lg font-semibold text-black hover:bg-cyan-300 rounded-lg duration-300">
           Dashboard
         </button>
-      </ActiveLink>
+      </ActiveLink>}
     </div>
   );
 
@@ -80,8 +82,8 @@ const Navbar = () => {
           <div className="flex items-center space-x-5">
           <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
             <div className="avatar">
-              <div className="w-14 border-2 border-cyan-300 rounded-full">
-                <img className="p-1" src={user?.photoURL || defaultUser} />
+              <div className="w-16 border-2 border-cyan-300 rounded-full">
+                <img className="p-1 rounded-full" src={user?.photoURL || defaultUser} />
               </div>
             </div>
           </div>

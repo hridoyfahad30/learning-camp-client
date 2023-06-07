@@ -71,18 +71,26 @@ const Login = () => {
       const loggedInUser = {
         email: user.email
       }
-      fetch('https://toy-server-tau.vercel.app/jwt', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(loggedInUser)
-        })
-        .then(res => res.json())
-        .then(data => {
-          localStorage.setItem('toy-access-token', data.token)
-        })
-      setSuccess("Signed In");
+      // fetch('https://toy-server-tau.vercel.app/jwt', {
+      //     method: 'POST',
+      //     headers: {
+      //       'content-type': 'application/json'
+      //     },
+      //     body: JSON.stringify(loggedInUser)
+      //   })
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     localStorage.setItem('toy-access-token', data.token)
+      //   })
+      Swal.fire({
+        title: 'User Login Successful.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
       navigate(from);
     })
         .catch(err=>{
@@ -166,7 +174,7 @@ const Login = () => {
             </div>
             <div className="divider -mb-2">OR</div>
             <div className="form-control mt-6 mx-auto">
-              <button className="">
+              <button onClick={handleGoogleSignIn} className="">
                 <img
                   className="w-20 rounded-full hover:scale-110 duration-300"
                   src={google}

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -10,6 +10,8 @@ const Register = () => {
   const [showPass, setShowPass] = useState(true);
   const [err, setErr] = useState("");
   const { createUser, googleSignUp, auth, logOut } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
 
   const {
@@ -55,6 +57,39 @@ const Register = () => {
       
   };
   
+  const handleGoogleSignIn = () => {
+    googleSignUp()
+    .then((res) => {
+      const user = res.user;
+      const loggedInUser = {
+        email: user.email
+      }
+      // fetch('https://toy-server-tau.vercel.app/jwt', {
+      //     method: 'POST',
+      //     headers: {
+      //       'content-type': 'application/json'
+      //     },
+      //     body: JSON.stringify(loggedInUser)
+      //   })
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     localStorage.setItem('toy-access-token', data.token)
+      //   })
+      Swal.fire({
+        title: 'User Registration Successful.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+      navigate(from)
+    })
+        .catch(err=>{
+            setErr(err.message)
+        })
+  }
 
   const handleShowPass = () => {
     setShowPass(!showPass);
@@ -198,7 +233,7 @@ const Register = () => {
             </div>
             <div className="divider -mb-2">OR</div>
             <div className="form-control mx-auto">
-              <button className="-mb-6">
+              <button onClick={handleGoogleSignIn} className="-mb-6">
                 <img
                   className="w-20 rounded-full hover:scale-110 duration-300"
                   src={google}
