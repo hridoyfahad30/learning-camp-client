@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const [showPass, setShowPass] = useState(false);
-  const [name, setName] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPass, setShowPass] = useState(true);
+  const [err, setErr] = useState("");
+  const { createUser, googleSignUp, auth, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -17,25 +19,58 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = data => {
+    console.log(data);
+    setErr("")
+    const email = data.email;
+    const password = data.password;
+    const name = data.name;
+    const photoURL = data.photoURL;
+
+    
+    createUser(email, password)
+      .then((res) => {
+        const createdUser = res.user;
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoURL,
+        });
+        reset();
+        logOut();
+        Swal.fire({
+          title: 'User Registration Successful. Please Login!',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+        navigate('/login')
+      })
+      .catch((err) => {
+        setErr(err.message);
+        return;
+      });
+      
+  };
+  
+
   const handleShowPass = () => {
     setShowPass(!showPass);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log(email);
-  };
 
   return (
-    <div className="hero">
+    <div className="hero mt-14">
       <div className="hero-content flex-col">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-slate-900 bg-cyan-300 p-4 rounded-full -mt-8 -mb-3">
-            Register
-          </h1>
+        <div className="avatar placeholder absolute z-10 top-20">
+          <div className="bg-cyan-300 text-slate-900 text-3xl font-bold rounded-full w-32">
+            <span className="text-3xl">Register</span>
+          </div>
         </div>
         <div className="card flex-shrink-0 w-[500px] shadow-2xl bg-cyan-100">
-          <form onSubmit={handleRegister} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control -mb-2">
               <label className="label">
                 <span className="text-lg font-semibold">Name</span>
@@ -43,7 +78,6 @@ const Register = () => {
               <input
                 type="text"
                 {...register("name", { required: true })}
-                name="name"
                 placeholder="Name"
                 className="input input-bordered"
               />
@@ -57,7 +91,6 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                name="photoUrl"
                 {...register("photoURL", { required: true })}
                 placeholder="Photo URL"
                 className="input input-bordered"
@@ -73,7 +106,6 @@ const Register = () => {
               <input
                 type="email"
                 {...register("email", { required: true })}
-                name="email"
                 placeholder="Email"
                 className="input input-bordered"
               />
@@ -86,7 +118,7 @@ const Register = () => {
                 <span className="text-lg font-semibold">Password</span>
               </label>
               <input
-                type="password"
+                type={showPass ? "password" : "text"}
                 {...register("password", {
                   required: true,
                   minLength: 6,
@@ -117,16 +149,18 @@ const Register = () => {
                 <span className="text-lg font-semibold">Confirm Password</span>
               </label>
               <input
-                type="password"
+                type={showPass ? "password" : "text"}
                 {...register("password", {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                 })}
+
                 placeholder="password"
                 className="input input-bordered"
               />
+            
               {errors.password?.type === "required" && (
                 <p className="text-red-600">Password is required</p>
               )}
@@ -144,6 +178,9 @@ const Register = () => {
                   and one special character.
                 </p>
               )}
+              {
+                err && <p className="text-red-600">{err}</p>
+              }
               <label className="label space-x-2">
                 <input onClick={handleShowPass} type="checkbox" name="" id="" />
                 <p className="">Show password</p>
@@ -156,7 +193,7 @@ const Register = () => {
             </div>
             <div className="form-control -mb-4">
               <button className="btn bg-cyan-300 hover:bg-cyan-400">
-                Login
+                Register
               </button>
             </div>
             <div className="divider -mb-2">OR</div>
