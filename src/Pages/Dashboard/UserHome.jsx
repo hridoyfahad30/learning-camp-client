@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import { AuthContext } from "../../Providers/AuthProvider";
-import userImg from '../../assets/user.png'
 
 const UserHome = () => {
     const { user } = useContext(AuthContext);
