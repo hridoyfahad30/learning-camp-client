@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import AllInstructors from "../../components/Pages/AllInstructors/AllInstructors";
-import { Helmet } from "react-helmet";
+import React, { useEffect, useState } from 'react';
 import { GridLoader } from "react-spinners";
+import MyClassesTable from '../../components/Dashboard/MyClassesTable';
 
-const Instructors = () => {
+const MyClasses = () => {
+
     const [reactLoading, setReactLoading] = useState(false);
 
   useEffect(() => {
@@ -12,10 +12,10 @@ const Instructors = () => {
       setReactLoading(false);
     }, 400);
   }, []);
-  return (
-    
-    <>
-    {reactLoading?
+
+    return (
+       <>
+        {reactLoading?
         
         <div className="flex justify-center items-center h-[100vh]">
           <GridLoader
@@ -27,16 +27,13 @@ const Instructors = () => {
       />
         </div>
       :
-    <>
-      <Helmet>
-        <title>LEARNING CAMP | Instructor</title>
-      </Helmet>
-      <div>
-        <AllInstructors />
-      </div>
-    </>}
-    </>
-  );
+       <div className=''>
+            <div>
+                <MyClassesTable />
+            </div>
+        </div>}
+        </>
+    );
 };
 
-export default Instructors;
+export default MyClasses;

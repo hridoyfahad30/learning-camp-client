@@ -6,7 +6,7 @@ import PopularInstructor from "../../components/Pages/Home/PopularInstructor/Pop
 import TrendingCategories from "../../components/Pages/Home/TrendingCategories/TrendingCategories";
 import WeWorksWith from "../../components/Pages/Home/WeWorksWith/WeWorksWith";
 import { Helmet } from "react-helmet";
-import { ScaleLoader, GridLoader } from "react-spinners";
+import { GridLoader } from "react-spinners";
 
 const Home = () => {
   const [reactLoading, setReactLoading] = useState(false);
@@ -24,7 +24,7 @@ const Home = () => {
           <GridLoader
             color="#0ee9ff"
             margin={10}
-            size={100}
+            size={50}
             speedMultiplier={2}
             width={0}
           />

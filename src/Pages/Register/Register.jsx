@@ -116,7 +116,7 @@ const Register = () => {
           <GridLoader
         color="#0ee9ff"
         margin={10}
-        size={100}
+        size={50}
         speedMultiplier={2}
         width={0}
       />
