@@ -42,7 +42,7 @@ const SelectedClassTable = () => {
                   </div>
                 </div>
               </td>
-              <td>$345</td>
+              <td>$3434535</td>
 
               <th className="text-center flex flex-col space-y-2">
                 <button className="btn bg-green-400 hover:bg-green-500 hover:shadow-2xl">
