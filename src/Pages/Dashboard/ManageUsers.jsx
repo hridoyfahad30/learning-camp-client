@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import ManageUserTable from "../../components/Dashboard/ManageUserTable";
+import { getUser } from "../../API/allAPI";
 
 const ManageUsers = () => {
   const [reactLoading, setReactLoading] = useState(false);
@@ -8,10 +9,7 @@ const ManageUsers = () => {
   const [allUser, setAllUser] = useState([]);
 
   useEffect(() => {
-    const options = { method: "GET" }
-
-    fetch("http://localhost:5000/allUsers", options)
-      .then((res) => res.json())
+    getUser()
       .then((data) => {
         setAllUser(data);
         console.log(data);
@@ -39,9 +37,9 @@ const ManageUsers = () => {
           />
         </div>
       ) : (
-        <div className="flex justify-center items-center min-h-screen">
-           <div className="overflow-x-auto w-full">
-        <table className="table w-11/12">
+        <div className="flex justify-start items-center min-h-screen">
+          <div className="overflow-x-auto">
+            <table className="table w-9/12">
           {/* head */}
           <thead>
             <tr>
@@ -50,6 +48,7 @@ const ManageUsers = () => {
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
+              <th>User Image</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -67,6 +66,7 @@ const ManageUsers = () => {
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
+              <th>User Image</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>

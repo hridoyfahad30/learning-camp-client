@@ -7,8 +7,7 @@ import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { ScaleLoader, GridLoader } from "react-spinners";
-import { storeUser } from "../../API/authentication";
-import { Dialog } from '@headlessui/react'
+import { storeUser } from "../../API/allAPI";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(true);

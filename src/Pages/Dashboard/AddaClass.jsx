@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
-import { addClass } from "../../API/authentication";
+import { addClass } from "../../API/allAPI";
+import Swal from "sweetalert2";
 
 const AddaClass = () => {
   const {
@@ -11,7 +12,18 @@ const AddaClass = () => {
   } = useForm();
 
   const onSubmit = (classInfo) => {
-    addClass(classInfo);
+    addClass(classInfo)
+    .then(data => {
+      if(data.insertedId){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your class has been submitted for admin review',
+          showConfirmButton: false,
+          timer: 3500
+        })
+      }
+    })
   };
 
   const [reactLoading, setReactLoading] = useState(false);

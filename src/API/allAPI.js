@@ -19,6 +19,14 @@ export const storeUser = (user) => {
     .catch((err) => console.error(err));
 };
 
+// Get User
+export const getUser = () => {
+  const options = { method: "GET" }
+
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-users`, options)
+      .then((res) => res.json())
+} 
+
 // Make Admin
 export const makeAdmin = (email) => {
   const currentUser = {
@@ -55,15 +63,54 @@ export const makeInstructor = (email) => {
   ).then((response) => response.json());
 };
 
+// Add Class
 export const addClass = (classInfo) => {
-  const addAClassInfo = classInfo;
+  const addAClassInfo = { classInfo, status: "pending" };
 
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(addAClassInfo)
+    body: JSON.stringify(addAClassInfo),
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/add-a-class`, options)
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/add-a-class`,
+    options
+  ).then((res) => res.json());
+};
+
+// Update Class Status by Admin
+export const updateClassStatus = (id, status) => {
+  const action = {
+    status
+  };
+
+  const options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(action),
+  };
+
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`, options)
+    .then((response) => response.json())
+};
+
+// Get Instructor Class
+export const getMyClasses = () => {
+  const options = {
+    method: "GET"
+  };
+
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-classes`, options)
     .then((res) => res.json())
 };
+
+// Get All Classes As Admin
+export const getAllClasses = () => {
+  const options = {
+    method: "GET"
+  };
+
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-classes`, options)
+    .then((res) => res.json())
+}

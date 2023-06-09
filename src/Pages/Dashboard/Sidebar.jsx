@@ -19,22 +19,7 @@ const Sidebar = () => {
   const [isDark, { toggle }] = useDarkreader(false);
   const pathname = useLocation().pathname;
   return (
-    <div className="drawer lg:drawer-open">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
-        {/* Page content here */}
-        <label
-          htmlFor="my-drawer-2"
-          className="btn bg-cyan-400 hover:bg-cyan-300 drawer-button lg:hidden"
-        >
-          Open drawer
-        </label>
-      </div>
-      <div className="drawer-side">
-        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-
-        {/* Sidebar content here */}
-        <div className="min-h-screen py-10 bg-gradient-to-t from-cyan-500 to-teal-500 flex flex-col gap-14">
+    <div className="py-10 bg-gradient-to-t from-cyan-500 to-teal-500 flex flex-col gap-14">
           <div className="flex flex-col justify-center items-center shadow-2xl py-4 rounded-3xl shadow-cyan-800">
             <img className="w-36" src={logo} alt="" />
             <h1 className="text-center text-3xl font-bold text-white">
@@ -186,8 +171,6 @@ const Sidebar = () => {
             </Link>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

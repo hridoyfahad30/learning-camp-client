@@ -1,82 +1,59 @@
 import React from "react";
 
-const MyClassesTable = () => {
+const MyClassesTable = ({ myClass }) => {
+  const _id = myClass._id;
+  const status = myClass.status;
+  const { className, classImage } = myClass.classInfo;
+
   return (
-    <div className="flex justify-center items-center min-h-screen ">
-      <div className="overflow-x-auto w-full">
-        <table className="table w-11/12">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Class Name</th>
-              <th>Total Enrolled Students</th>
-              <th>Feedback</th>
-              <th className="text-center">Status</th>
-              <th className="text-center">Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            <tr className="hover:scale-[102%] duration-200 hover:shadow-2xl rounded-3xl">
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td className="text-center">
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Music Class</div>
-                  </div>
-                </div>
-              </td>
-              <td>234 Students</td>
-              <td>
-                <button className="bg-teal-300 p-2 rounded-2xl font-medium hover:bg-teal-400 hover:shadow-2xl hover:shadow-cyan-600">
-                  See Feedback
-                </button>
-              </td>
-              <th className="text-center">
-                <p className="bg-yellow-400 text-center py-2 rounded-2xl">
-                  Pending
-                </p>
-                {/* <p className="bg-green-400 text-center py-2 rounded-2xl">Approved</p>
-                <p className="bg-red-400 text-center py-2 rounded-2xl">Denied</p> */}
-              </th>
-              <th className="text-center">
-                <button className="bg-green-400 text-center px-4 py-2 rounded-2xl">
-                  Update
-                </button>
-              </th>
-            </tr>
-          </tbody>
-          {/* foot */}
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Class Name</th>
-              <th>Total Enrolled Students</th>
-              <th>Feedback</th>
-              <th className="text-center">Status</th>
-              <th className="text-center">Update</th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
+    <tbody>
+      {/* row 1 */}
+      <tr className="hover:scale-[102%] duration-200 hover:shadow-2xl rounded-3xl">
+        <th>
+          <label>
+            <input type="checkbox" className="checkbox" />
+          </label>
+        </th>
+        <td className="text-center">
+          <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={classImage} alt="Avatar Tailwind CSS Component" />
+              </div>
+            </div>
+          </div>
+        </td>
+        <td><div>
+              <div className="font-bold w-40">{className}</div>
+            </div></td>
+        <td>234 Students</td>
+        <td>
+          <button className="bg-teal-300 p-2 rounded-2xl font-medium hover:bg-teal-400 hover:shadow-2xl px-4 w-32">
+            See Feedback
+          </button>
+        </td>
+        <th className="text-center">
+          {status === "pending" && (
+            <p className="bg-yellow-400 text-center py-2 rounded-2xl w-20">
+              Pending
+            </p>
+          )}
+          {status === "approved" && (
+            <p className="bg-green-500 text-center py-2 rounded-2xl w-20">
+              Approved
+            </p>
+          )}
+          {status === "denied" && (
+            <p className="bg-red-500 text-center py-2 rounded-2xl w-20">Denied</p>
+          )}
+        </th>
+        <th className="text-center">
+          <button className="bg-teal-300 hover:bg-teal-400 text-center px-4 py-2 rounded-2xl">
+            Update
+          </button>
+        </th>
+      </tr>
+    </tbody>
   );
 };
 

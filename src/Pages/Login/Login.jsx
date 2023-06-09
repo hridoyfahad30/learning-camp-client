@@ -6,7 +6,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { ScaleLoader, GridLoader } from "react-spinners";
-import { storeUser } from "../../API/authentication";
+import { storeUser } from "../../API/allAPI";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);

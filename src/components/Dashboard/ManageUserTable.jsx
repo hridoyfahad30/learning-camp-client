@@ -1,5 +1,5 @@
 import React from "react";
-import { makeAdmin, makeInstructor } from "../../API/authentication";
+import { makeAdmin, makeInstructor } from "../../API/allAPI";
 import Swal from "sweetalert2";
 
 const ManageUserTable = ({ user }) => {
@@ -61,9 +61,11 @@ const ManageUserTable = ({ user }) => {
                 <img src={photo} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
-            <div>
-              <div className="font-bold">{name}</div>
-            </div>
+          </div>
+        </td>
+        <td>
+          <div>
+            <div className="font-bold w-36">{name}</div>
           </div>
         </td>
         <td>{email}</td>
