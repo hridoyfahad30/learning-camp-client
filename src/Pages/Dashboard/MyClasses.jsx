@@ -33,45 +33,46 @@ const MyClasses = () => {
           />
         </div>
       ) : (
-        
-          <div className="flex justify-start items-center min-h-screen">
+        <div className="flex justify-start items-center min-h-screen">
           <div className="overflow-x-auto">
+            <h2 className="text-4xl font-semibold text-center my-4">
+              My Total Class: {myClasses.length}
+            </h2>
             <table className="table  w-9/12">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>
-                      <label>
-                        <input type="checkbox" className="checkbox" />
-                      </label>
-                    </th>
-                    <th>Class Image</th>
-                    <th>Class Name</th>
-                    <th>Total Enrolled Students</th>
-                    <th>Feedback</th>
-                    <th className="text-center">Status</th>
-                    <th className="text-center">Update</th>
-                  </tr>
-                </thead>
-                {
-                  myClasses.map(myClass => <MyClassesTable key={myClass._id} myClass={myClass} />)
-                }
-                {/* foot */}
-                <tfoot>
-                  <tr>
-                    <th></th>
-                    <th>Class Image</th>
-                    <th>Class Name</th>
-                    <th>Total Enrolled Students</th>
-                    <th>Feedback</th>
-                    <th className="text-center">Status</th>
-                    <th className="text-center">Update</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>
+                    <label>
+                      <input type="checkbox" className="checkbox" />
+                    </label>
+                  </th>
+                  <th>Class Image</th>
+                  <th>Class Name</th>
+                  <th>Total Enrolled Students</th>
+                  <th>Feedback</th>
+                  <th className="text-center">Status</th>
+                  <th className="text-center">Update</th>
+                </tr>
+              </thead>
+              {myClasses.map((myClass) => (
+                <MyClassesTable key={myClass._id} myClass={myClass} />
+              ))}
+              {/* foot */}
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th>Class Image</th>
+                  <th>Class Name</th>
+                  <th>Total Enrolled Students</th>
+                  <th>Feedback</th>
+                  <th className="text-center">Status</th>
+                  <th className="text-center">Update</th>
+                </tr>
+              </tfoot>
+            </table>
           </div>
-        
+        </div>
       )}
     </>
   );

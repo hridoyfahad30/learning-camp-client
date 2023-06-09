@@ -12,7 +12,8 @@ const WeWorksWith = () => {
         Your privacy stays yours. We don’t sell your data or target you with
         ads.
       </p>
-      <Marquee>
+      <Marquee
+      speed={30}>
         <div className="flex justify-between items-center">
           <PartnerCard />
           <PartnerCard />

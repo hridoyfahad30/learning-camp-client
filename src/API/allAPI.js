@@ -65,7 +65,7 @@ export const makeInstructor = (email) => {
 
 // Add Class
 export const addClass = (classInfo) => {
-  const addAClassInfo = { classInfo, status: "pending" };
+  const addAClassInfo = { classInfo, status: "pending", feedback: "" };
 
   const options = {
     method: "POST",
@@ -91,6 +91,22 @@ export const updateClassStatus = (id, status) => {
     body: JSON.stringify(action),
   };
 
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`, options)
+    .then((response) => response.json())
+};
+
+
+// Update Class Status by Admin
+export const sendFeedback = (id, feedback) => {
+  const action = {
+    feedback
+  };
+
+  const options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(action),
+  };
   return fetch(`${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`, options)
     .then((response) => response.json())
 };

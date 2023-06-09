@@ -35,6 +35,7 @@ const ManageClasses = () => {
       ) : (
         <div className="flex justify-start items-center min-h-screen">
           <div className="overflow-x-auto">
+          <h2 className="text-4xl font-semibold text-center my-4">Total Class: {allClasses.length}</h2>
             <table className="table w-9/12">
               {/* head */}
               <thead>
@@ -53,18 +54,24 @@ const ManageClasses = () => {
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
-             {
-              allClasses.map(allClass => <ManageClassesTable key={allClass._id} allClass={allClass} />)
-             }
+              {allClasses.map((allClass) => (
+                <ManageClassesTable key={allClass._id} allClass={allClass} />
+              ))}
               {/* foot */}
               <tfoot>
                 <tr>
-                  <th></th>
-                  <th>Class Name</th>
-                  <th>Total Enrolled Students</th>
-                  <th>Feedback</th>
-                  <th className="text-center">Status</th>
-                  <th className="text-center">Update</th>
+                  <th>
+                    <label>
+                      <input type="checkbox" className="checkbox" />
+                    </label>
+                  </th>
+                  <th className="">Class Name</th>
+                  <th className="">Instructor Name</th>
+                  <th className="">Instructor Email</th>
+                  <th className="">Available Seats</th>
+                  <th className="">Price</th>
+                  <th className="">Status</th>
+                  <th className="text-center">Action</th>
                 </tr>
               </tfoot>
             </table>

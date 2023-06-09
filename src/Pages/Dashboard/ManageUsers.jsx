@@ -12,7 +12,6 @@ const ManageUsers = () => {
     getUser()
       .then((data) => {
         setAllUser(data);
-        console.log(data);
       })
       .catch((err) => console.error(err));
   }, []);
