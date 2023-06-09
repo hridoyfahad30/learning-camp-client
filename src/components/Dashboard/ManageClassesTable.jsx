@@ -23,9 +23,23 @@ const ManageClassesTable = ({allClass}) => {
           timer: 2500
         })
       }
-      console.log(data);
     })
-  }
+  };
+
+  const handleDeny = (_id, status) => {
+    updateClassStatus(_id, status)
+    .then(data => {
+      if(data.modifiedCount > 0){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Class Denied',
+          showConfirmButton: false,
+          timer: 2500
+        })
+      }
+    })
+  };
 
   return (
     <tbody>
@@ -66,7 +80,7 @@ const ManageClassesTable = ({allClass}) => {
           <button onClick={()=>{handleApprove(_id, approve)}} disabled={status === "approved"} className="bg-green-300 hover:bg-green-400 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium disabled:bg-slate-200 disabled:text-slate-400">
             Approve
           </button>
-          <button disabled={status === "denied"} className="bg-red-300 hover:bg-red-400 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium disabled:bg-slate-200 disabled:text-slate-400">
+          <button onClick={()=>{handleDeny(_id, denied)}} disabled={status === "denied"} className="bg-red-300 hover:bg-red-400 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium disabled:bg-slate-200 disabled:text-slate-400">
             Deny
           </button>
           <button className="bg-yellow-300 hover:bg-yellow-400 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium disabled:bg-slate-200 disabled:text-slate-400">
