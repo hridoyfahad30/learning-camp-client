@@ -5,9 +5,11 @@ import logo from "../../../assets/logo.png";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import defaultUser from "../../../assets/user.png";
 import { motion } from "framer-motion";
+import { Switch, useDarkreader } from "react-darkreader";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isDark, { toggle }] = useDarkreader(false);
 
   const handleLogout = () => {
     logOut();
@@ -67,9 +69,9 @@ const Navbar = () => {
             {navItem}
           </ul>
         </div>
-        <Link to="/" className="flex items-center">
-          <img className="w-20" src={logo} alt="" />
-          <p className="text-xl font-bold">LEARNING CAMP</p>
+        <Link to="/" className="md:flex items-center">
+          <img className="w-12 md:w-20 mx-auto mb-1" src={logo} alt="" />
+          <p className="text-sm md:text-xl font-bold">LEARNING CAMP</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -83,7 +85,7 @@ const Navbar = () => {
               data-tip={user?.displayName}
             >
               <div className="avatar">
-                <div className="w-16 border-2 border-cyan-300 rounded-full">
+                <div className="w-10 md:w-16 border-2 border-cyan-300 rounded-full">
                   <img
                     className="p-1 rounded-full"
                     src={user?.photoURL || defaultUser}
@@ -100,7 +102,7 @@ const Navbar = () => {
             >
               <button
                 onClick={handleLogout}
-                className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+                className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
               >
                 Logout
               </button>
@@ -118,12 +120,15 @@ const Navbar = () => {
           {!user && (
             <Link
               to="/login"
-              className="btn px-4 py-2 text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+              className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
             >
               Login
             </Link>
           )}
         </motion.div>
+        <div className="ml-4 mr-2">
+        <Switch checked={isDark} onChange={toggle} styling="github" />
+        </div>
       </div>
     </div>
   );

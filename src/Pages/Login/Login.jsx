@@ -6,16 +6,15 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { ScaleLoader, GridLoader } from "react-spinners";
+import { storeUser } from "../../API/authentication";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const { signIn, googleSignUp, loading } = useContext(AuthContext);
+  const { signIn, googleSignUp, loading, setLoading, resetPassword } = useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
-
   const [err, setErr] = useState("");
-
   const [reactLoading, setReactLoading] = useState(false);
 
   useEffect(() => {
@@ -47,18 +46,6 @@ const Login = () => {
         const loggedInUser = {
           email: user.email,
         };
-        // fetch("https://toy-server-tau.vercel.app/jwt", {
-        //   method: "POST",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify(loggedInUser),
-        // })
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     console.log("jwt response", data);
-        //     localStorage.setItem("toy-access-token", data.token);
-        //   });
         Swal.fire({
           title: "User Login Successful.",
           showClass: {
@@ -71,6 +58,7 @@ const Login = () => {
         navigate(from);
       })
       .catch((err) => {
+        setLoading(false)
         setErr(err.message);
       });
   };
@@ -79,20 +67,7 @@ const Login = () => {
     googleSignUp()
       .then((res) => {
         const user = res.user;
-        const loggedInUser = {
-          email: user.email,
-        };
-        // fetch('https://toy-server-tau.vercel.app/jwt', {
-        //     method: 'POST',
-        //     headers: {
-        //       'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(loggedInUser)
-        //   })
-        //   .then(res => res.json())
-        //   .then(data => {
-        //     localStorage.setItem('toy-access-token', data.token)
-        //   })
+        storeUser(user);
         Swal.fire({
           title: "User Login Successful.",
           showClass: {
@@ -105,9 +80,11 @@ const Login = () => {
         navigate(from);
       })
       .catch((err) => {
+        setLoading(false);
         setErr(err.message);
       });
   };
+
 
   return (
     <>
@@ -186,6 +163,7 @@ const Login = () => {
                     </p>
                   )}
                   {err && <p className="text-red-600">{err}</p>}
+                  <div className="flex justify-between items-center mx-4">
                   <label className="label space-x-2">
                     <input
                       onClick={handleShowPass}
@@ -195,6 +173,8 @@ const Login = () => {
                     />
                     <p className="">Show password</p>
                   </label>
+                 
+                  </div>
                   <label className="label">
                     <Link to="/register" className=" link link-hover">
                       Create An New Account

@@ -12,8 +12,11 @@ import {
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { Switch, useDarkreader } from "react-darkreader";
+
 
 const Sidebar = () => {
+  const [isDark, { toggle }] = useDarkreader(false);
   const pathname = useLocation().pathname;
   return (
     <div className="drawer lg:drawer-open">
@@ -38,7 +41,9 @@ const Sidebar = () => {
               LEARNING CAMP
             </h1>
           </div>
-
+          <div className="mx-auto">
+          <Switch checked={isDark} onChange={toggle} styling="github" />
+          </div>
           {/* Student Dashboard */}
           <div className="flex flex-col gap-6 pl-2">
             <Link to="/dashboard" className="">
@@ -90,7 +95,7 @@ const Sidebar = () => {
           </div>
 
           {/* Instructor Dashboard */}
-          {/* <div className="flex flex-col gap-6 pl-2">
+          <div className="flex flex-col gap-6 pl-2">
             <Link to="/dashboard" className="">
               <button
                 style={{ borderRadius: "10px 0px 0px 10px" }}
@@ -133,10 +138,10 @@ const Sidebar = () => {
             >
               <FaHome /> Back To Home
             </Link>
-          </div> */}
+          </div>
 
           {/* Admin Dashboard */}
-          {/* <div className="flex flex-col gap-6 pl-2">
+          <div className="flex flex-col gap-6 pl-2">
             <Link to="/dashboard" className="">
               <button
                 style={{ borderRadius: "10px 0px 0px 10px" }}
@@ -179,7 +184,7 @@ const Sidebar = () => {
             >
               <FaHome /> Back To Home
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
