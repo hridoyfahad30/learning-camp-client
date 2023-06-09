@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
+import { addClass } from "../../API/authentication";
 
 const AddaClass = () => {
   const {
@@ -10,7 +11,7 @@ const AddaClass = () => {
   } = useForm();
 
   const onSubmit = (classInfo) => {
-    console.log(parseInt(classInfo.price));
+    addClass(classInfo);
   };
 
   const [reactLoading, setReactLoading] = useState(false);

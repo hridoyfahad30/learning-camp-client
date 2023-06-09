@@ -1,5 +1,4 @@
 // Store User in MongoDB
-
 export const storeUser = (user) => {
   const currentUser = {
     email: user.email,
@@ -16,14 +15,11 @@ export const storeUser = (user) => {
 
   fetch(`${import.meta.env.VITE_API_BASE_URL}/allUsers/${user?.email}`, options)
     .then((response) => response.json())
-    .then((data) => {
-      
-    })
+    .then((data) => {})
     .catch((err) => console.error(err));
 };
 
 // Make Admin
-
 export const makeAdmin = (email) => {
   const currentUser = {
     role: "admin",
@@ -35,13 +31,13 @@ export const makeAdmin = (email) => {
     body: JSON.stringify(currentUser),
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/allUsers/${email}`, options)
-    .then((response) => response.json())
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/all-users/${email}`,
+    options
+  ).then((response) => response.json());
 };
 
-
 // Make Instructor
-
 export const makeInstructor = (email) => {
   const currentUser = {
     role: "instructor",
@@ -53,6 +49,21 @@ export const makeInstructor = (email) => {
     body: JSON.stringify(currentUser),
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/allUsers/${email}`, options)
-    .then((response) => response.json())
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/all-users/${email}`,
+    options
+  ).then((response) => response.json());
+};
+
+export const addClass = (classInfo) => {
+  const addAClassInfo = classInfo;
+
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(addAClassInfo)
+  };
+
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/add-a-class`, options)
+    .then((res) => res.json())
 };
