@@ -1,9 +1,8 @@
 import React from "react";
 
 const MyClassesTable = ({ myClass }) => {
-  const _id = myClass._id;
-  const status = myClass.status;
-  const { className, classImage } = myClass.classInfo;
+
+  const {_id, className, classImage, status } = myClass;
 
   return (
     <>
@@ -39,7 +38,7 @@ const MyClassesTable = ({ myClass }) => {
             )}
           </td>
           <th className="text-center">
-            {status === "pending" && (
+            {status === "" && (
               <p className="bg-yellow-400 text-center py-2 rounded-2xl w-20">
                 Pending
               </p>

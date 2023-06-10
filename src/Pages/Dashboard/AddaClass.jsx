@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
 import { addClass } from "../../API/allAPI";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const AddaClass = () => {
+
+  const {user, loading} = useContext(AuthContext);
+
+  if(loading){
+    return 
+  }
+
   const {
     register,
     handleSubmit,
@@ -64,7 +72,7 @@ const AddaClass = () => {
                     {...register("className", { required: true })}
                   />
                   {errors.className && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Class Name is required</span>
                 )}
                 </div>
                 <div className="form-control w-1/2 my-2 mx-6">
@@ -78,7 +86,7 @@ const AddaClass = () => {
                     {...register("classImage", { required: true })}
                   />
                   {errors.classImage && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Class Image is required</span>
                 )}
                 </div>
               </div>
@@ -91,12 +99,14 @@ const AddaClass = () => {
                   </label>
                   <input
                     type="text"
+                    defaultValue={user?.displayName}
+                    readOnly
                     placeholder="Instructor Name"
                     className="input input-bordered text-black text-lg font-medium"
                     {...register("instructorName", { required: true })}
                   />
                   {errors.instructorName && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Instructor Name is required</span>
                 )}
                 </div>
                 <div className="form-control w-1/2 my-2 mx-6">
@@ -108,11 +118,13 @@ const AddaClass = () => {
                   <input
                     type="email"
                     placeholder="Instructor Email"
+                    defaultValue={user?.email}
+                    readOnly
                     className="input input-bordered text-black text-lg font-medium"
                     {...register("instructorEmail", { required: true })}
                   />
                   {errors.instructorEmail && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Instructor Email is required</span>
                 )}
                 </div>
               </div>
@@ -130,7 +142,7 @@ const AddaClass = () => {
                     {...register("availableSeats", { required: true })}
                   />
                   {errors.availableSeats && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Available Seats is required</span>
                 )}
                 </div>
                 <div className="form-control w-1/2 my-2 mx-6">
@@ -144,8 +156,27 @@ const AddaClass = () => {
                     {...register("price", { required: true })}
                   />
                   {errors.price && (
-                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Name is required</span>
+                  <span className="text-red-500 text-lg mt-2 ml-4 -mb-3 font-semibold">Price is required</span>
                 )}
+                </div>
+                <div className="form-control w-1/2 my-2 mx-6 hidden">
+                  <label className="label">
+                    <span className="text-xl font-semibold">Status & Feedback</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="status"
+                    readOnly
+                    className="input input-bordered text-black text-lg font-medium"
+                    {...register("status", { required: false })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="status"
+                    readOnly
+                    className="input input-bordered text-black text-lg font-medium"
+                    {...register("feedback", { required: false })}
+                  />
                 </div>
               </div>
               <div className="flex justify-center items-center my-8">

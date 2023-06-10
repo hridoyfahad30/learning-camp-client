@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import ManageUserTable from "../../components/Dashboard/ManageUserTable";
 import { getUser } from "../../API/allAPI";
+import { ImSpinner9 } from "react-icons/im";
 
 const ManageUsers = () => {
   const [reactLoading, setReactLoading] = useState(false);
@@ -54,7 +55,11 @@ const ManageUsers = () => {
               <th className="text-center">Manage User</th>
             </tr>
           </thead>
-          {
+          {allUser.length == 0 ? (
+                <div>
+                  <ImSpinner9 className="text-6xl text-center" />
+                </div>
+              ) :
             allUser.map(user => <ManageUserTable key={user._id} user={user} />)
           }
           {/* foot */}

@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import MyClassesTable from "../../components/Dashboard/MyClassesTable";
-import { getMyClasses } from "../../API/allAPI";
+import { getInstructorClasses } from "../../API/allAPI";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { ImSpinner9 } from "react-icons/im";
 
 const MyClasses = () => {
+  const {user, loading} = useContext(AuthContext)
+
+  if(loading){
+    return
+  }
+
   const [reactLoading, setReactLoading] = useState(false);
   const [myClasses, setMyClasses] = useState([]);
-
-  useEffect(() => {
-    getMyClasses().then((data) => {
-      setMyClasses(data);
-    });
-  }, []);
-
+console.log(myClasses);
   useEffect(() => {
     setReactLoading(true);
     setTimeout(() => {
@@ -20,9 +22,15 @@ const MyClasses = () => {
     }, 400);
   }, []);
 
+  useEffect(() => {
+    getInstructorClasses(user?.email).then((data) => {
+      setMyClasses(data);
+    });
+  }, []);
+
   return (
     <>
-      {reactLoading ? (
+      {loading || reactLoading ? (
         <div className="flex justify-center items-center h-[100vh]">
           <GridLoader
             color="#0ee9ff"
@@ -55,7 +63,14 @@ const MyClasses = () => {
                   <th className="text-center">Update</th>
                 </tr>
               </thead>
-              {myClasses.map((myClass) => (
+              {myClasses.length == 0 ? (
+                <div>
+                  <ImSpinner9 className="text-6xl text-center" />
+                  
+                </div>
+              ) :
+              
+              myClasses.map((myClass) => (
                 <MyClassesTable key={myClass._id} myClass={myClass} />
               ))}
               {/* foot */}

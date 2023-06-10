@@ -8,8 +8,12 @@ import { motion } from "framer-motion";
 import { Switch, useDarkreader } from "react-darkreader";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const [isDark, { toggle }] = useDarkreader(false);
+
+  if(loading){
+    return
+  }
 
   const handleLogout = () => {
     logOut();

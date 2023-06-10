@@ -19,6 +19,22 @@ export const storeUser = (user) => {
     .catch((err) => console.error(err));
 };
 
+// Update Instructor Approved Classes
+export const updateInstructorApproveClass = (instructorEmail) => {
+
+  const options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" }
+  };
+
+  fetch(`${import.meta.env.VITE_API_BASE_URL}/profile?email=${instructorEmail}`, options)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.error(err));
+};
+
 // Get User
 export const getUser = () => {
   const options = { method: "GET" }
@@ -26,6 +42,20 @@ export const getUser = () => {
     return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-users`, options)
       .then((res) => res.json())
 } 
+
+// Get Profile
+export const getUserProfile = (userEmail) => {
+  const options = {
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    },
+  };
+
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/profile?email=${userEmail}`, options)
+    .then((res) => res.json())
+
+};
 
 // Make Admin
 export const makeAdmin = (email) => {
@@ -65,7 +95,7 @@ export const makeInstructor = (email) => {
 
 // Add Class
 export const addClass = (classInfo) => {
-  const addAClassInfo = { classInfo, status: "pending", feedback: "" };
+  const addAClassInfo = classInfo;
 
   const options = {
     method: "POST",
@@ -112,13 +142,17 @@ export const sendFeedback = (id, feedback) => {
 };
 
 // Get Instructor Class
-export const getMyClasses = () => {
+export const getInstructorClasses = (userEmail) => {
   const options = {
-    method: "GET"
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    },
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-classes`, options)
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/instructor-classes?email=${userEmail}`, options)
     .then((res) => res.json())
+
 };
 
 // Get All Classes As Admin

@@ -1,14 +1,13 @@
 import React from "react";
-import { sendFeedback, updateClassStatus } from "../../API/allAPI";
+import { sendFeedback, updateClassStatus, updateInstructorApproveClass } from "../../API/allAPI";
 import Swal from "sweetalert2";
 import SendFeedback from "../Modal/SendFeedback";
 import { useState } from "react";
 
 const ManageClassesTable = ({ allClass }) => {
-  const _id = allClass._id;
-  const status = allClass.status;
-  const { className, instructorName, instructorEmail, availableSeats, price } =
-    allClass.classInfo;
+
+  const {_id, className, instructorName, instructorEmail, availableSeats, price, status, classImage } =
+    allClass;
 
   const approve = "approved";
   const denied = "denied";
@@ -18,6 +17,7 @@ const ManageClassesTable = ({ allClass }) => {
   const handleApprove = (_id, status) => {
     updateClassStatus(_id, status).then((data) => {
       if (data.modifiedCount > 0) {
+        updateInstructorApproveClass(instructorEmail);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -64,6 +64,7 @@ const ManageClassesTable = ({ allClass }) => {
   };
 
   return (
+    
     <>
       <tbody>
         {/* row */}
@@ -75,6 +76,11 @@ const ManageClassesTable = ({ allClass }) => {
           </td>
           <td className="text-center">
             <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={classImage} alt="Avatar Tailwind CSS Component" />
+              </div>
+            </div>
               <div>
                 <div className="font-bold w-20 text-start">{className}</div>
               </div>
@@ -85,7 +91,7 @@ const ManageClassesTable = ({ allClass }) => {
           <td>{availableSeats}</td>
           <td>{price}</td>
           <td className="text-center">
-            {status === "pending" && (
+            {status === "" && (
               <p className="bg-yellow-400 text-center px-4 py-2 rounded-2xl">
                 Pending
               </p>
