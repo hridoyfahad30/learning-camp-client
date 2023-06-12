@@ -42,8 +42,9 @@ const MySelectedClasses = () => {
       ) : (
         <div className="h-screen">
           <div className="flex justify-center items-center min-h-screen ">
-            <div className="overflow-x-auto w-full">
-              <table className="table w-11/12">
+            <div className="overflow-x-auto">
+              <h1 className="my-4 text-center text-4xl font-semibold">Total Selected Class: {mySelectedClasses.length}</h1>
+              <table className="table">
                 {/* head */}
                 <thead>
                   <tr>
@@ -53,19 +54,27 @@ const MySelectedClasses = () => {
                       </label>
                     </th>
                     <th>Class Name</th>
+                    <th></th>
+                    <th></th>
                     <th>Price</th>
+                    <th></th>
+                    <th></th>
                     <th className="text-center">Action</th>
                   </tr>
                 </thead>
                 {mySelectedClasses.map((selectClass) => (
-                  <SelectedClassTable />
+                  <SelectedClassTable key={selectClass._id} selectClass={selectClass} />
                 ))}
                 {/* foot */}
                 <tfoot>
                   <tr>
                     <th></th>
                     <th>Class Name</th>
+                    <th></th>
+                    <th></th>
                     <th>Price</th>
+                    <th></th>
+                    <th></th>
                     <th className="text-center">Action</th>
                   </tr>
                 </tfoot>

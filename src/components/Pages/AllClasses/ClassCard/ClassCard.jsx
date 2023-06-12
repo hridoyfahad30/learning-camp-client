@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const ClassCard = ({singleClass}) => {
 
-  const {classImage, className, instructorName, availableSeats, price} = singleClass;
+  const {_is, classImage, className, instructorName, availableSeats, price} = singleClass;
 
   const {user, loading} = useAuth();
     if(loading){
@@ -22,11 +22,23 @@ const ClassCard = ({singleClass}) => {
   },[]);
 
   const handleSelectClass = (singleClass) => {
-    const classInfo = {selectClass_id: singleClass._id, classImage: singleClass.classImage, className: singleClass.className, price: singleClass.price, paymentStatus: "unpaid", email: user?.email}
-
     if(!user){
-      return navigate('/login')
+      Swal.fire({
+        title: 'Please Login before select a class',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#16a34a',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return navigate('/login')
+        }
+      })  
+      return
     }
+
+    const classInfo = {selectClass_id: singleClass._id, classImage: classImage, className: className, instructorName: instructorName, price: price, paymentStatus: "unpaid", email: user?.email}
 
     addSelectClass(classInfo)
     .then(data => {

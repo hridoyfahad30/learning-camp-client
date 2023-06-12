@@ -1,5 +1,3 @@
-import useAxiosSecure from "../hooks/useAxiosSecure";
-
 // Store User in MongoDB
 export const storeUser = (user) => {
   const currentUser = {
@@ -23,13 +21,15 @@ export const storeUser = (user) => {
 
 // Update Instructor Approved Classes
 export const updateInstructorApproveClass = (instructorEmail) => {
-
   const options = {
     method: "PUT",
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
   };
 
-  fetch(`${import.meta.env.VITE_API_BASE_URL}/profile?email=${instructorEmail}`, options)
+  fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/profile?email=${instructorEmail}`,
+    options
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -39,10 +39,11 @@ export const updateInstructorApproveClass = (instructorEmail) => {
 
 // Get User
 export const getUser = () => {
-  const options = { method: "GET" }
+  const options = { method: "GET" };
 
-    return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-users`, options)
-      .then((res) => res.json())
+  return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-users`, options).then(
+    (res) => res.json()
+  );
 };
 
 // Get Profile
@@ -54,9 +55,10 @@ export const getUserProfile = (userEmail) => {
     },
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/profile?email=${userEmail}`, options)
-    .then((res) => res.json())
-
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/profile?email=${userEmail}`,
+    options
+  ).then((res) => res.json());
 };
 
 // Make Admin
@@ -101,10 +103,10 @@ export const addClass = (classInfo) => {
 
   const options = {
     method: "POST",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("access-token")}`,
-   },
+    },
     body: JSON.stringify(addAClassInfo),
   };
 
@@ -120,10 +122,10 @@ export const addSelectClass = (classInfo) => {
 
   const options = {
     method: "POST",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("access-token")}`,
-   },
+    },
     body: JSON.stringify(addSelectClassInfo),
   };
 
@@ -133,10 +135,20 @@ export const addSelectClass = (classInfo) => {
   ).then((res) => res.json());
 };
 
+// Delete Select Class
+export const deleteSelectedClass = (id) => {
+  const options = { method: "DELETE" };
+
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/delete-selected-class/${id}`,
+    options
+  ).then((res) => res.json());
+};
+
 // Update Class Status by Admin
 export const updateClassStatus = (id, status) => {
   const action = {
-    status
+    status,
   };
 
   const options = {
@@ -145,14 +157,16 @@ export const updateClassStatus = (id, status) => {
     body: JSON.stringify(action),
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`, options)
-    .then((response) => response.json())
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`,
+    options
+  ).then((response) => response.json());
 };
 
 // Update Class Status by Admin
 export const sendFeedback = (id, feedback) => {
   const action = {
-    feedback
+    feedback,
   };
 
   const options = {
@@ -160,8 +174,10 @@ export const sendFeedback = (id, feedback) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(action),
   };
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`, options)
-    .then((response) => response.json())
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/update-class-status/${id}`,
+    options
+  ).then((response) => response.json());
 };
 
 // Get Instructor Class
@@ -173,9 +189,12 @@ export const getSelectedClasses = (userEmail) => {
     },
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/my-selected-classes?email=${userEmail}`, options)
-    .then((res) => res.json())
-
+  return fetch(
+    `${
+      import.meta.env.VITE_API_BASE_URL
+    }/my-selected-classes?email=${userEmail}`,
+    options
+  ).then((res) => res.json());
 };
 
 // Get Instructor Class
@@ -187,22 +206,25 @@ export const getInstructorClasses = (userEmail) => {
     },
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/instructor-classes?email=${userEmail}`, options)
-    .then((res) => res.json())
-
+  return fetch(
+    `${
+      import.meta.env.VITE_API_BASE_URL
+    }/instructor-classes?email=${userEmail}`,
+    options
+  ).then((res) => res.json());
 };
 
 // Get All Classes As Admin
 export const getAllClasses = () => {
   const options = {
-    method: "GET"
+    method: "GET",
   };
 
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/all-classes`, options)
-    .then((res) => res.json())
+  return fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/all-classes`,
+    options
+  ).then((res) => res.json());
 };
 
 // Store Selected Classes for Students
-export const storeSelectedClasses = () => {
-  
-};
+export const storeSelectedClasses = () => {};
