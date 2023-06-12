@@ -3,8 +3,13 @@ import { Helmet } from "react-helmet";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Pages/Dashboard/Sidebar";
 import { GridLoader } from "react-spinners";
+import useAuth from "../hooks/useAuth";
 
 const DashBoard = () => {
+  const {user, loading} = useAuth();
+  if(!user){
+    return
+  }
   const [reactLoading, setReactLoading] = useState(false);
 
   useEffect(() => {
@@ -16,7 +21,7 @@ const DashBoard = () => {
 
   return (
     <>
-      {reactLoading ? (
+      {loading || reactLoading ? (
         <div className="flex justify-center items-center h-[100vh]">
           <GridLoader
             color="#0ee9ff"
@@ -47,7 +52,8 @@ const DashBoard = () => {
             <div className="drawer-side">
               <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
               {/* Sidebar content here */}
-              <Sidebar />
+              {!loading &&
+                <Sidebar />}
             </div>
           </div>
         </>

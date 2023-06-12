@@ -1,6 +1,7 @@
 import React from "react";
 import { deleteSelectedClass } from "../../API/allAPI";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const SelectedClassTable = ({ selectClass }) => {
   const { _id, classImage, className, instructorName, price, paymentStatus } =
@@ -55,12 +56,14 @@ const SelectedClassTable = ({ selectClass }) => {
         <td></td>
 
         <th className="text-center flex flex-col space-y-2">
-          <button
+          <Link
+            to={`/dashboard/payment/${_id}`} state={{price: price}}
             disabled={paymentStatus === "paid"}
             className="btn bg-green-400 hover:bg-green-500 hover:shadow-2xl disabled:bg-gray-200 disabled:text-gray-300"
           >
+            {" "}
             Pay
-          </button>
+          </Link>
           <button
             onClick={() => {
               handleDeleteSelectClass(_id);
