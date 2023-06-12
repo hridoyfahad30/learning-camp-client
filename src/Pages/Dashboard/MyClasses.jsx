@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
 import MyClassesTable from "../../components/Dashboard/MyClassesTable";
 import { getInstructorClasses } from "../../API/allAPI";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { ImSpinner9 } from "react-icons/im";
+import useAuth from "../../hooks/useAuth";
 
 const MyClasses = () => {
-  const {user, loading} = useContext(AuthContext)
+  const {user, loading} = useAuth();
 
   if(loading){
     return

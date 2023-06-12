@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GridLoader } from "react-spinners";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { getUserProfile } from "../../API/allAPI";
+import useAuth from "../../hooks/useAuth";
 
 const UserHome = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth()
     if(loading){
       return
     }

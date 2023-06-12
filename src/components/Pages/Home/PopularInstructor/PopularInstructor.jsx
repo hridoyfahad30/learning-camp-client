@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InstructorCard from "./InstructorCard/InstructorCard";
+import { getUser } from "../../../../API/allAPI";
+import { GridLoader } from "react-spinners";
 
 const PopularInstructor = () => {
+
+  const [users, setUsers] = useState([]);
+
+  const instructors = users.filter(user => user.role === "instructor");
+
+  useEffect(()=>{
+    getUser()
+    .then(data => {
+      setUsers(data);
+    })
+
+  },[])
   return (
     <div className="my-28">
       <h1 className="text-5xl font-semibold leading-snug ">
@@ -11,12 +25,17 @@ const PopularInstructor = () => {
         </span>
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 my-12">
-        <InstructorCard />
-        <InstructorCard />
-        <InstructorCard />
-        <InstructorCard />
-        <InstructorCard />
-        <InstructorCard />
+        {instructors.length == 0 ? 
+          <GridLoader
+            color="#0ee9ff"
+            margin={10}
+            size={20}
+            speedMultiplier={2}
+            width={0}
+          />
+          :
+          instructors.slice(0, 6).map(instructor => <InstructorCard key={instructor._id} instructor={instructor} />)
+        }        
       </div>
     </div>
   );

@@ -161,7 +161,7 @@ const AddaClass = () => {
                 </div>
                 <div className="form-control w-1/2 my-2 mx-6 hidden">
                   <label className="label">
-                    <span className="text-xl font-semibold">Status & Feedback</span>
+                    <span className="text-xl font-semibold">Status & Feedback & Number of Students</span>
                   </label>
                   <input
                     type="text"
@@ -176,6 +176,13 @@ const AddaClass = () => {
                     readOnly
                     className="input input-bordered text-black text-lg font-medium"
                     {...register("feedback", { required: false })}
+                  />
+                  <input
+                    type="number"
+                    placeholder="Total Students"
+                    readOnly
+                    className="input input-bordered text-black text-lg font-medium"
+                    {...register("totalStudents", { required: false })}
                   />
                 </div>
               </div>

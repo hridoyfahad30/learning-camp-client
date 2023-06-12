@@ -17,6 +17,7 @@ import { Switch, useDarkreader } from "react-darkreader";
 
 const Sidebar = () => {
   const [isDark, { toggle }] = useDarkreader(false);
+  
   const pathname = useLocation().pathname;
   return (
     <div className="py-10 bg-gradient-to-t from-cyan-500 to-teal-500 flex flex-col gap-14">
