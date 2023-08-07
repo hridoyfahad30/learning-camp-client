@@ -76,7 +76,7 @@ const ManageUserTable = ({ user }) => {
             onClick={() => {
               handleMakeAdmin(email);
             }}
-            className="bg-cyan-300 disabled:bg-slate-100 disabled:text-slate-300 hover:bg-cyan-400 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium"
+            className="bg-cyan-300 disabled:bg-slate-100 disabled:text-slate-300 hover:bg-cyan-200 hover:shadow-2xl hover:shadow-black duration-300 text-center px-4 w-36 py-2 rounded-2xl font-medium"
           >
             Make Admin
           </button>

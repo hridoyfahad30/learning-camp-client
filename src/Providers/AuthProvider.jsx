@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
@@ -9,7 +8,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 
@@ -39,6 +37,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem('access-token');
     return signOut(auth);
   };
 
@@ -57,7 +56,7 @@ const AuthProvider = ({ children }) => {
           body: JSON.stringify({email: loggedUser?.email}),
         };
 
-        fetch(`http://localhost:5000/jwt`, options)
+        fetch(`https://learning-camp-server.vercel.app/jwt`, options)
           .then((res) => res.json())
           .then((data) => {
             localStorage.setItem("access-token", data?.token)

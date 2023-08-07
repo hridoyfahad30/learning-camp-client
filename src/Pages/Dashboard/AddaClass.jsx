@@ -3,11 +3,11 @@ import { GridLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
 import { addClass } from "../../API/allAPI";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../Providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const AddaClass = () => {
 
-  const {user, loading} = useContext(AuthContext);
+  const {user, loading} = useAuth()
 
   if(loading){
     return 
@@ -16,6 +16,7 @@ const AddaClass = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -23,6 +24,7 @@ const AddaClass = () => {
     addClass(classInfo)
     .then(data => {
       if(data.insertedId){
+        reset();
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -187,7 +189,7 @@ const AddaClass = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center my-8">
-                <button className="bg-cyan-300 w-96 py-4 rounded-xl text-black text-xl font-semibold hover:bg-cyan-400 hover:shadow-2xl hover:shadow-teal-600 hover:scale-105 duration-300">
+                <button className="bg-cyan-300 w-96 py-4 rounded-xl text-black text-xl font-semibold hover:bg-cyan-200 hover:shadow-2xl hover:shadow-teal-600 hover:scale-105 duration-300">
                   Add Class
                 </button>
               </div>

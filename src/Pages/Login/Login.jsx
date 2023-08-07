@@ -182,7 +182,7 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn bg-cyan-300 hover:bg-cyan-400">
+                  <button className="btn bg-cyan-300 hover:bg-cyan-200">
                     {loading ? (
                       <ScaleLoader
                         color="#2f2f2f"

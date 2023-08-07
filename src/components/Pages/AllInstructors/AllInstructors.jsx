@@ -18,7 +18,7 @@ const AllInstructors = () => {
   },[])
 
   return (
-    <div className="mt-12 mb-28">
+    <div className="mt-12 mb-28 mx-4 md:mx-14">
         <h1 className="text-5xl font-semibold leading-snug ">
         Meet Our {" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400 animate-pulse font-bold">

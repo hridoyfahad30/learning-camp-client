@@ -18,6 +18,8 @@ import Payment from "../Pages/Dashboard/Payment";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import PrivateRoute from "./PrivateRoute";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -44,7 +46,15 @@ export const router = createBrowserRouter([
         {
             path: '/register',
             element: <Register />
-        }
+        },
+        {
+            path: '/about',
+            element: <About />
+        },
+        {
+            path: '/contact',
+            element: <Contact />
+        },
       ]
     },
     {

@@ -7,6 +7,9 @@ import TrendingCategories from "../../components/Pages/Home/TrendingCategories/T
 import WeWorksWith from "../../components/Pages/Home/WeWorksWith/WeWorksWith";
 import { Helmet } from "react-helmet";
 import { GridLoader } from "react-spinners";
+import SuccessStories from "../../components/Pages/Home/SuccessStories/SuccessStories";
+import Timer from "../../components/Pages/Home/Timer/Timer";
+import NewsLetter from "../../components/Pages/Home/NewsLetter/NewsLetter";
 
 const Home = () => {
   const [reactLoading, setReactLoading] = useState(false);
@@ -36,11 +39,14 @@ const Home = () => {
           </Helmet>
           <div className="min-h-[30vh]">
             <Slider />
+            <Timer />
             <WhyChose />
             <PopularClasses />
+            <SuccessStories />
             <PopularInstructor />
             <TrendingCategories />
             <WeWorksWith />
+            <NewsLetter />
           </div>
         </>
       )}

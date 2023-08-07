@@ -79,6 +79,7 @@ const Register = () => {
     googleSignUp()
       .then((res) => {
         const user = res.user;
+        storeUser(user)
         Swal.fire({
           title: "User Registration Successful.",
           showClass: {
@@ -260,7 +261,7 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="form-control -mb-4">
-                    <button className="btn bg-cyan-300 hover:bg-cyan-400">
+                    <button className="btn bg-cyan-300 hover:bg-cyan-200">
                       {loading ? (
                         <ScaleLoader
                           color="#2f2f2f"

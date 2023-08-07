@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
 import ActiveLink from "./ActiveLink/ActiveLink";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { AuthContext } from "../../../Providers/AuthProvider";
 import defaultUser from "../../../assets/user.png";
 import { motion } from "framer-motion";
 import { Switch, useDarkreader } from "react-darkreader";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, logOut, loading } = useAuth()
   const [isDark, { toggle }] = useDarkreader(false);
 
   if(loading){
@@ -22,27 +21,37 @@ const Navbar = () => {
   const navItem = (
     <div className="flex flex-col md:flex-row md:space-x-6">
       <ActiveLink to="/">
-        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-300 hover:text-black rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
           Home
         </button>
       </ActiveLink>
       <ActiveLink to="/instructors">
-        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-300 hover:text-black rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
           Instructors
         </button>
       </ActiveLink>
       <ActiveLink to="/classes">
-        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-300 hover:text-black rounded-lg duration-300">
+        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
           Classes
         </button>
       </ActiveLink>
       {user && (
         <ActiveLink to="/dashboard"> 
-          <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-300 hover:text-black rounded-lg duration-300">
+          <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
             Dashboard
           </button>
         </ActiveLink>
       )}
+      <ActiveLink to="/about">
+        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
+          About Us
+        </button>
+      </ActiveLink>
+      <ActiveLink to="/contact">
+        <button className="px-2 py-2 text-lg font-semibold text-black md:text-white hover:bg-cyan-200 hover:text-black rounded-lg duration-300">
+          Contact Us
+        </button>
+      </ActiveLink>
     </div>
   );
 
@@ -106,7 +115,7 @@ const Navbar = () => {
             >
               <button
                 onClick={handleLogout}
-                className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+                className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-200 rounded-lg duration-300"
               >
                 Logout
               </button>
@@ -124,7 +133,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to="/login"
-              className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-400 rounded-lg duration-300"
+              className="btn md:px-4 md:py-2 md:text-lg font-semibold text-black bg-cyan-300 hover:bg-cyan-200 rounded-lg duration-300"
             >
               Login
             </Link>

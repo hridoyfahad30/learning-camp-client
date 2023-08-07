@@ -95,7 +95,7 @@ const CheckoutForm = ({ price }) => {
           }}
         />
         <button
-          className="btn bg-cyan-300 hover:bg-cyan-400 text-xl font-semibold px-8 my-8"
+          className="btn bg-cyan-300 hover:bg-cyan-200 text-xl font-semibold px-8 my-8"
           type="submit"
           disabled={!stripe || !clientSecret}
         >

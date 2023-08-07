@@ -9,7 +9,7 @@ const Error404 = () => {
       <div className="space-y-8">
         <p className="text-9xl font-extrabold">{status}</p>
         <p className="text-4xl font-bold">{error.message}</p>
-        <Link to='/'><button className="my-10 bg-cyan-300 px-6 py-3 rounded-xl text-3xl text-black font-semibold hover:bg-cyan-400 shadow-2xl shadow-black">Back to Home</button></Link>
+        <Link to='/'><button className="my-10 bg-cyan-300 px-6 py-3 rounded-xl text-3xl text-black font-semibold hover:bg-cyan-200 shadow-2xl shadow-black">Back to Home</button></Link>
       </div>
     </div>
   );

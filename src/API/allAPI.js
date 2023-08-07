@@ -13,7 +13,7 @@ export const storeUser = (user) => {
     body: JSON.stringify(currentUser),
   };
 
-  fetch(`${import.meta.env.VITE_API_BASE_URL}/allUsers/${user?.email}`, options)
+  fetch(`${import.meta.env.VITE_API_BASE_URL}/all-users/${user?.email}`, options)
     .then((response) => response.json())
     .then((data) => {})
     .catch((err) => console.error(err));

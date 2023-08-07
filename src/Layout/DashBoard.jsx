@@ -44,7 +44,7 @@ const DashBoard = () => {
               <Outlet />
               <label
                 htmlFor="my-drawer-2"
-                className="btn bg-cyan-400 hover:bg-cyan-300 drawer-button lg:hidden"
+                className="btn bg-cyan-400 hover:bg-cyan-200 drawer-button lg:hidden"
               >
                 Open drawer
               </label>
